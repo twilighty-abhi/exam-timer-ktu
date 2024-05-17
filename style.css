@@ -46,3 +46,8 @@ h1 {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+@media screen and (max-width: 600px) {
+    .time-left {
+        min-width: 150px; /* Adjust this value as needed */
+    }
+}
