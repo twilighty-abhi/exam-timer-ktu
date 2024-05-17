@@ -26,7 +26,13 @@ h1 {
     background-color: #dcd3a5;
     font-weight: normal;
 }
+.table-bordered {
+    border: 3px solid #dee2e6 !important;
+}
 
+.table-bordered th, .table-bordered td {
+    border: 3px solid #dee2e6 !important;
+}
 .btn-success {
     box-shadow: 0 9px #999;
 }
