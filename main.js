@@ -1,5 +1,78 @@
+const tableBody = document.getElementById('table-body');
+const examsDetails = {
+    "S2": {
+
+    },
+    "S4": {
+
+    },
+    "S6": {
+        "CS": [
+            { "code": "CST302", "date": "May 23, 2024 9:30:00", "name": "Compiler Design", "id": 1 },
+            { "code": "CST304", "date": "May 28, 2024 9:30:00", "name": "Computer Graphics And Image Processing", "id": 2 },
+            { "code": "CST306", "date": "June 1, 2024 9:30:00", "name": "Algorithm Analysis And Design", "id": 3 },
+            { "code": "CST3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "CST308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 6 }
+        ],
+        "IT": [
+            { "code": "ITT302", "date": "May 23, 2024 9:30:00", "name": "Internetworking With TCP/IP", "id": 1 },
+            { "code": "ITT304", "date": "May 28, 2024 9:30:00", "name": "Algorithm Analysis And Design", "id": 2 },
+            { "code": "ITT306", "date": "June 1, 2024 9:30:00", "name": "Data Science", "id": 3 },
+            { "code": "ITT3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "ITT308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 6 }
+        ],
+
+        "EC": [
+            { "code": "ECT302", "date": "May 23, 2024 9:30:00", "name": "Electromagnetics", "id": 1 },
+            { "code": "ECT304", "date": "May 28, 2024 9:30:00", "name": "VlSI Circuit Design", "id": 2 },
+            { "code": "ECT306", "date": "June 1, 2024 9:30:00", "name": "Information Theory And Coding", "id": 3 },
+            { "code": "ECT3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "HUT310", "date": "June 11, 2024 9:30:00", "name": "Management For Engineers", "id": 5 },
+            { "code": "ECT308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 6 }
+        ],
+        "ME": [
+            { "code": "MET302", "date": "May 23, 2024 9:30:00", "name": "Heat & Mass Transfer", "id": 1 },
+            { "code": "MET304", "date": "May 28, 2024 9:30:00", "name": "Dynamics Of Machinery & Machine Design", "id": 2 },
+            { "code": "MET306", "date": "June 1, 2024 9:30:00", "name": "Advanced Manufacturing Engineering", "id": 3 },
+            { "code": "MET3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "MET310", "date": "June 11, 2024 9:30:00", "name": "Management For Engineers", "id": 5 },
+            { "code": "MET308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 7 }
+        ],
+    
+        "EE": [
+            { "code": "EET302", "date": "May 23, 2024 9:30:00", "name": "Linear Control Systems", "id": 1 },
+            { "code": "EET304", "date": "May 28, 2024 9:30:00", "name": "Power Systems II", "id": 2 },
+            { "code": "EET306", "date": "June 1, 2024 9:30:00", "name": "Power Electronics", "id": 3 },
+            { "code": "EET3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "HUT310", "date": "June 11, 2024 9:30:00", "name": "Management For Engineers", "id": 5 },
+            { "code": "EET308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 6 }
+        ],
+
+        "CE": [
+            { "code": "CET302", "date": "May 23, 2024 9:30:00", "name": "Structural Analysis – II", "id": 1 },
+            { "code": "CET304", "date": "May 28, 2024 9:30:00", "name": "Environmental Engineering", "id": 2 },
+            { "code": "CET306", "date": "June 1, 2024 9:30:00", "name": "Design Of Hydraulic Structures", "id": 3 },
+            { "code": "CET3x2", "date": "June 6, 2024 9:30:00", "name": "Elective - I", "id": 4 },
+            { "code": "HUT300", "date": "June 11, 2024 9:30:00", "name": "Industrial Economics And Foreign Trade", "id": 5 },
+            { "code": "CET308", "date": "June 14, 2024 9:30:00", "name": "Comprehensive Course Work", "id": 6 }
+        ],
+        
+    },
+    "S8": {
+    }
+
+}
+
+var defaultSem = "S6";
+var defaultBranch = "CS";
+
 function countdown(cdate, dest) {
-    var x = setInterval(function() {
+    var x = setInterval(function () {
         var now = new Date().getTime();
         var distance = cdate - now;
         if (distance < 0) {
@@ -11,28 +84,42 @@ function countdown(cdate, dest) {
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+
         if (days < 5) {
             dest.style.color = "red";
         } else {
             dest.style.color = "black";
         }
-        
+
         dest.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
     }, 1000);
 }
 
-var exams = [
-    { date: "May 23, 2024 9:30:00", dest: '.ex1' },
-    { date: "May 28, 2024 9:30:00", dest: '.ex2' },
-    { date: "June 1, 2024 9:30:00", dest: '.ex3' },
-    { date: "June 6, 2024 9:30:00", dest: '.ex4' },
-    { date: "June 11, 2024 9:30:00", dest: '.ex5' },
-    { date: "June 14, 2024 9:30:00", dest: '.ex6' }
-];
+document.getElementById('branch').addEventListener('change', function (e) {
+    defaultBranch = e.target.value;
+    updateTable(defaultSem, defaultBranch);
+})
 
-exams.forEach(function(exam) {
-    var cdex = new Date(exam.date).getTime();
-    var dest = document.querySelector(exam.dest);
-    countdown(cdex, dest);
-});
+document.getElementById('sem').addEventListener('change', function (e) {
+    defaultSem = e.target.value;
+    updateTable(defaultSem, defaultBranch);
+})
+
+
+function updateTable(sem, branch) {
+    tableBody.innerHTML = "";
+    examsDetails[sem][branch].forEach(exam => {
+        var row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${exam.id}</td>
+        <td>${exam.name}</td>
+        <td>${exam.code}</td>
+        <td>${exam.date}</td>
+        <td id="countdown${exam.id}"> </td>
+        `;
+        tableBody.appendChild(row);
+        countdown(new Date(exam.date).getTime(), document.getElementById(`countdown${exam.id}`));
+    });
+}
+
+updateTable(defaultSem, defaultBranch);
