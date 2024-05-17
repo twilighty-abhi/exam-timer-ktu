@@ -61,3 +61,16 @@ td{
     justify-content: center;
     margin-top: 20px;
 }
+/* Add a container element for the table and apply some basic styles */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Add media query for small devices */
+@media screen and (max-width: 600px) {
+    .table-container table {
+        width: 100%;
+        display: block;
+    }
+}
