@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5JML2FQMJD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-5JML2FQMJD');
@@ -24,6 +25,28 @@
   </header>
   <main class="container">
     <section class="timetable">
+      <div>
+        <label for="sem">Semester</label>
+        <select name="sem" id="sem" disabled>
+          <option value="S2">S2</option>
+          <option value="S4">S4</option>
+          <option value="S6" selected>S6</option>
+          <option value="S8">S8</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="branch">Branch</label>
+        <select name="branch" id="branch">
+          <option value="CS" selected>CSE</option>
+          <option value="EC">ECE</option>
+          <option value="EE">EEE</option>
+          <option value="ME">ME</option>
+          <option value="CE">CE</option>
+          <option value="IT">IT</option>
+        </select>
+      </div>
+
       <div class="table-responsive">
         <table class="table table-bordered table-striped text-center">
           <thead class="thead-light">
@@ -35,7 +58,7 @@
               <th>Time Left</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="table-body">
             <tr>
               <td>A</td>
               <td>Compiler Design</td>
@@ -81,6 +104,7 @@
           </tbody>
         </table>
       </div>
+
       <div class="text-center mt-4">
         <a href="https://kutti.link/s6ktu" class="btn btn-success btn-lg">Resources!</a>
       </div>
@@ -91,4 +115,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
 </body>
+
 </html>
