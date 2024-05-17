@@ -1,51 +1,68 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #bdb389;
-    color: #000;
+    background-color: #88c1fa;
+    color: #333;
     font-weight: bold;
     margin: 0;
 }
 
 h1 {
     font-weight: bold;
+    color: #2c3e50;
 }
 
 .table {
-    background-color: #7ABA78;
+    background-color: #ffffff;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .table th, .table td {
-    color: #153448;
+    color: #34495e;
+    padding: 15px;
+    vertical-align: middle;
 }
 
 .table th {
-    background-color: #E2DFD0;
+    background-color: #ecf0f1;
 }
 
 .table td {
-    background-color: #dcd3a5;
+    background-color: #fdfefe;
     font-weight: normal;
 }
+
 .table-bordered {
-    border: 3px solid #dee2e6 !important;
+    border: 1px solid #dee2e6;
 }
 
 .table-bordered th, .table-bordered td {
-    border: 3px solid #dee2e6 !important;
+    border: 1px solid #dee2e6;
 }
+
 .btn-success {
-    box-shadow: 0 9px #999;
+    box-shadow: 0 4px #999;
+    background-color: #28a745;
+    border-color: #28a745;
 }
 
 .btn-success:hover {
-    background-color: #3e8e41;
+    background-color: #218838;
+    border-color: #1e7e34;
 }
 
 .btn-success:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    background-color: #1e7e34;
+    border-color: #1c7430;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
 }
+
+.table-warning {
+    background-color: #fff3cd;
+}
+
 @media screen and (max-width: 600px) {
     .time-left {
         min-width: 150px; /* Adjust this value as needed */

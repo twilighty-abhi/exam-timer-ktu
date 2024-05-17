@@ -36,3 +36,7 @@ exams.forEach(function(exam) {
     var dest = document.querySelector(exam.dest);
     countdown(cdex, dest);
 });
+
+
+
+// Path: index.html
