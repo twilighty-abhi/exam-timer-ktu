@@ -68,8 +68,22 @@ const examsDetails = {
 
 }
 
-var defaultSem = "S6";
-var defaultBranch = "CS";
+var defaultBranch;
+var defaultSem;
+if (localStorage.getItem('branch')) {
+    defaultBranch = localStorage.getItem('branch');
+    document.getElementById("branch").value = defaultBranch;
+}else{
+    defaultBranch = "CS";
+}
+
+if (localStorage.getItem('sem')) {
+    defaultSem = localStorage.getItem('sem');
+    document.getElementById("sem").value = defaultSem;
+}else{
+    defaultSem = "S6";
+}
+    
 
 function countdown(cdate, dest) {
     var x = setInterval(function () {
@@ -98,16 +112,24 @@ function countdown(cdate, dest) {
 document.getElementById('branch').addEventListener('change', function (e) {
     defaultBranch = e.target.value;
     updateTable(defaultSem, defaultBranch);
+    localStorage.setItem('branch', defaultBranch);
 })
 
 document.getElementById('sem').addEventListener('change', function (e) {
     defaultSem = e.target.value;
     updateTable(defaultSem, defaultBranch);
+    localStorage.setItem('sem', defaultSem);
 })
 
 
 function updateTable(sem, branch) {
     tableBody.innerHTML = "";
+    if(examsDetails[sem] === undefined || examsDetails[sem][branch] === undefined){
+        document.getElementById('meme').innerHTML = `<img src="3.png" alt="No Data Found" style="width: 30vh; height: 30vh; object-fit: contain;">`;
+    }else{
+        document.getElementById('meme').innerHTML = "";
+    
+    }
     examsDetails[sem][branch].forEach(exam => {
         var row = document.createElement('tr');
         row.innerHTML = `
