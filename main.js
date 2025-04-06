@@ -337,10 +337,10 @@ const examsDetails = {
         ],
 
         "CS": [
-            { "code": "CST402", "date": "April 16, 2025 9:30:00", "name": "Distributed Computing", "id": 1 },
-            {"code": "CST4X4", "date": "April 22 2025 9:30:00", "name": "Program Elective 3", "id":2},
-            {"code": "CST4X6", "date": "April 24, 2025 9:30:00", "name": "Program Elective 4", "id":3},
-            {"code": "CST4X8", "date": "April 29, 2025 9:30:00", "name": "Program Elective 5", "id":4},
+            { "code": "CST402", "date": "April 22, 2025 9:30:00", "name": "Distributed Computing", "id": 1 },
+            {"code": "CST4X4", "date": "April 24 2025 9:30:00", "name": "Program Elective 3", "id":2},
+            {"code": "CST4X6", "date": "April 28, 2025 9:30:00", "name": "Program Elective 4", "id":3},
+            {"code": "CST4X8", "date": "April 30, 2025 9:30:00", "name": "Program Elective 5", "id":4},
         ],
 
         "EC":[
