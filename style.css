@@ -153,84 +153,22 @@ select {
     object-fit: contain;
 }
 
-/* --- Cat Animation --- */
-.cat-animation-container {
-    position: absolute; /* Position relative to body */
-    bottom: 4rem; /* Position above the footer */
-    left: 0;
-    width: 100%;
-    height: 40px; /* Adjust height as needed */
-    overflow: hidden; /* Hide cat when it runs off screen */
+/* --- Running Cat GIF --- */
+#running-cat {
+    position: fixed; /* Position relative to viewport */
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1000; /* Ensure it's on top */
     pointer-events: none; /* Prevent interaction */
-    z-index: 10; /* Ensure it's above most content but below modals if any */
+    /* Vertical position (top) is now set by JS */
+    /* Horizontal transition for smooth walking */
+    transition: left 2.5s linear; /* Slower transition for walking effect */
+    /* Optional: Add a subtle shadow */
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+    /* Ensure bottom edge aligns roughly with footer top */
+    bottom: 4rem; /* Fallback/initial rough position */
 }
-
-.cat {
-    width: 30px; /* Cat size */
-    height: 25px;
-    background-color: var(--cat-color);
-    border-radius: 15px 15px 0 0; /* Basic body shape */
-    position: absolute;
-    bottom: 0;
-    left: -40px; /* Start off screen */
-    animation: run-cat 10s linear infinite;
-}
-
-/* Simple ears */
-.cat::before, .cat::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 8px solid var(--cat-color);
-    top: -6px;
-}
-
-.cat::before {
-    left: 3px;
-    transform: rotate(-15deg);
-}
-
-.cat::after {
-    right: 3px;
-    transform: rotate(15deg);
-}
-
-/* Simple tail */
-.cat::after { /* Reusing ::after for tail, adjust if needed */
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 15px;
-    background-color: var(--cat-color);
-    border-radius: 0 0 5px 5px;
-    top: 5px;
-    left: -5px; /* Position tail behind */
-    transform-origin: top center;
-    animation: wag-tail 0.5s linear infinite alternate;
-}
-
-
-@keyframes run-cat {
-    0% {
-        left: -40px; /* Start off screen left */
-    }
-    100% {
-        left: 100%; /* End off screen right */
-    }
-}
-
-@keyframes wag-tail {
-    0% {
-        transform: rotate(10deg);
-    }
-    100% {
-        transform: rotate(-10deg);
-    }
-}
-/* --- End Cat Animation --- */
+/* --- End Running Cat GIF --- */
 
 
 footer {
@@ -244,7 +182,7 @@ footer {
     border-top: 1px solid var(--table-border-color);
     font-size: 0.9rem;
     color: var(--secondary-color);
-    z-index: 5; /* Ensure footer is below cat */
+    z-index: 5; /* Ensure footer is below the cat */
 }
 
 footer a {
@@ -291,12 +229,7 @@ footer a:hover {
          border-bottom-width: 6px;
          top: -5px;
     }
-     .cat::after { /* Adjust tail */
-        width: 4px;
-        height: 12px;
-        top: 4px;
-        left: -4px;
-    }
+     /* Removed CSS cat tail adjustments */
 }
 
 @media (max-width: 576px) {
@@ -333,20 +266,8 @@ footer a:hover {
         bottom: 3.5rem; /* Adjust position above smaller footer */
         height: 30px;
     }
-     .cat { /* Even smaller cat */
-        width: 20px;
-        height: 16px;
-    }
-    .cat::before, .cat::after { /* Adjust ears */
-         border-left-width: 3px;
-         border-right-width: 3px;
-         border-bottom-width: 5px;
-         top: -4px;
-    }
-     .cat::after { /* Adjust tail */
-        width: 3px;
-        height: 10px;
-        top: 3px;
-        left: -3px;
+    /* Removed CSS cat size adjustments */
+    #running-cat { /* Smaller GIF on small screens */
+        width: 70px;
     }
 }

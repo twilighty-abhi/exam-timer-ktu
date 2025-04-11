@@ -462,3 +462,62 @@ function updateTable(sem, branch) {
 }
 
 updateTable(defaultSem, defaultBranch);
+
+// --- Cat Footer Walk ---
+const cat = document.getElementById('running-cat');
+let currentCatX = 0; // Track current position for flipping
+let catTargetX = 0; // Target position for the cat
+let catMoveInterval;
+
+function setCatTargetPosition() {
+    if (!cat) return;
+
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const catWidth = cat.offsetWidth;
+    const maxLeft = vw - catWidth;
+
+    // Generate random horizontal target position
+    catTargetX = Math.random() * maxLeft;
+
+    // Flip cat based on horizontal direction towards target
+    if (catTargetX < currentCatX) {
+        cat.style.transform = 'scaleX(-1)'; // Facing left
+    } else {
+        cat.style.transform = 'scaleX(1)'; // Facing right
+    }
+
+    // Apply new horizontal position (CSS transition handles the movement)
+    cat.style.left = `${catTargetX}px`;
+    currentCatX = catTargetX; // Update current position *after* setting target
+}
+
+// Initialize cat position and start movement
+if (cat) {
+    // Set initial vertical position near footer (adjust as needed)
+    // Ensure CSS is loaded before getting offsetHeight
+    window.addEventListener('load', () => {
+        if (!cat) return;
+        const footerHeight = document.querySelector('footer')?.offsetHeight || 60; // Estimate if footer not found
+        const initialTop = window.innerHeight - cat.offsetHeight - footerHeight + 10; // Position slightly above footer line
+        cat.style.top = `${initialTop}px`;
+
+        // Set initial horizontal position
+        const initialLeft = Math.random() * (window.innerWidth - cat.offsetWidth);
+        cat.style.left = `${initialLeft}px`;
+        currentCatX = initialLeft;
+        catTargetX = initialLeft; // Start with current position as target
+
+        // Set a new target position every 3-6 seconds
+        catMoveInterval = setInterval(setCatTargetPosition, Math.random() * 3000 + 3000);
+        setCatTargetPosition(); // Set initial target immediately
+    });
+
+    // Optional: Recalculate vertical position on resize
+    window.addEventListener('resize', () => {
+        if (!cat) return;
+        const footerHeight = document.querySelector('footer')?.offsetHeight || 60;
+        const newTop = window.innerHeight - cat.offsetHeight - footerHeight + 10;
+        cat.style.top = `${newTop}px`;
+    });
+}
+// --- End Cat Footer Walk ---
