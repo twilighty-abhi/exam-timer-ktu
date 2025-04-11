@@ -1,73 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --table-header-bg: #e9ecef;
+    --table-row-bg: #ffffff;
+    --table-border-color: #dee2e6;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --border-radius: 8px;
+    --cat-color: #555; /* Color for the CSS cat */
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #88c1fa;
-    color: #333;
-    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
     margin: 0;
+    padding-top: 2rem; /* Add padding for header */
+    padding-bottom: 6rem; /* Increased padding for footer + cat */
+    position: relative; /* Needed for absolute positioning of cat container */
+    min-height: 100vh; /* Ensure body takes full height */
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    margin-bottom: 2rem;
 }
 
 h1 {
-    font-weight: bold;
-    color: #2c3e50;
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 2rem;
+}
+
+.timetable-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    background-color: var(--table-row-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.timetable-controls > div {
+    display: flex;
+    flex-direction: column; /* Stack label and select */
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 500;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--table-row-bg);
+    font-size: 1rem;
+    min-width: 150px; /* Ensure selects have some width */
+}
+
+.table-responsive {
+    background-color: var(--table-row-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow-x: auto; /* Ensure table scrolls horizontally if needed */
 }
 
 .table {
-    background-color: #ffffff;
-    border-collapse: separate;
-    border-spacing: 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 0; /* Remove default Bootstrap margin */
+    border-collapse: collapse; /* Use collapse for cleaner lines */
 }
 
-.table th, .table td {
-    color: #34495e;
-    padding: 15px;
+.table th,
+.table td {
+    padding: 1rem;
     vertical-align: middle;
+    text-align: left;
+    border-top: 1px solid var(--table-border-color);
 }
 
-.table th {
-    background-color: #ecf0f1;
+.table thead th {
+    background-color: var(--table-header-bg);
+    font-weight: 500;
+    color: var(--secondary-color);
+    border-top: none; /* Remove top border for header */
+    text-align: center; /* Center header text */
+}
+
+.table tbody tr:first-child td {
+    border-top: none; /* Remove top border for the first body row */
 }
 
 .table td {
-    background-color: #fdfefe;
-    font-weight: normal;
+    font-weight: 400;
 }
 
-.table-bordered {
-    border: 1px solid #dee2e6;
+.table .countdown {
+    font-weight: 500;
+    min-width: 140px; /* Ensure countdown has enough space */
+    text-align: right;
 }
 
-.table-bordered th, .table-bordered td {
-    border: 1px solid #dee2e6;
+.countdown.expiring-soon {
+    color: #dc3545; /* Bootstrap danger color */
+}
+
+.resources-link {
+    margin-top: 2rem;
+    text-align: center;
 }
 
 .btn-success {
-    box-shadow: 0 4px #999;
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
 
-.btn-success:active {
-    background-color: #1e7e34;
-    border-color: #1c7430;
-    box-shadow: 0 2px #666;
-    transform: translateY(2px);
+#meme {
+    margin-top: 2rem;
+    text-align: center;
 }
 
-.table-warning {
-    background-color: #fff3cd;
+#meme img {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px; /* Limit meme height */
+    object-fit: contain;
 }
 
-@media screen and (max-width: 600px) {
-    .time-left {
-        min-width: 150px; /* Adjust this value as needed */
+/* --- Cat Animation --- */
+.cat-animation-container {
+    position: absolute; /* Position relative to body */
+    bottom: 4rem; /* Position above the footer */
+    left: 0;
+    width: 100%;
+    height: 40px; /* Adjust height as needed */
+    overflow: hidden; /* Hide cat when it runs off screen */
+    pointer-events: none; /* Prevent interaction */
+    z-index: 10; /* Ensure it's above most content but below modals if any */
+}
+
+.cat {
+    width: 30px; /* Cat size */
+    height: 25px;
+    background-color: var(--cat-color);
+    border-radius: 15px 15px 0 0; /* Basic body shape */
+    position: absolute;
+    bottom: 0;
+    left: -40px; /* Start off screen */
+    animation: run-cat 10s linear infinite;
+}
+
+/* Simple ears */
+.cat::before, .cat::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid var(--cat-color);
+    top: -6px;
+}
+
+.cat::before {
+    left: 3px;
+    transform: rotate(-15deg);
+}
+
+.cat::after {
+    right: 3px;
+    transform: rotate(15deg);
+}
+
+/* Simple tail */
+.cat::after { /* Reusing ::after for tail, adjust if needed */
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 15px;
+    background-color: var(--cat-color);
+    border-radius: 0 0 5px 5px;
+    top: 5px;
+    left: -5px; /* Position tail behind */
+    transform-origin: top center;
+    animation: wag-tail 0.5s linear infinite alternate;
+}
+
+
+@keyframes run-cat {
+    0% {
+        left: -40px; /* Start off screen left */
+    }
+    100% {
+        left: 100%; /* End off screen right */
     }
 }
+
+@keyframes wag-tail {
+    0% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+/* --- End Cat Animation --- */
+
+
 footer {
-    margin-top: 50px; /* Adjust this value as needed */
+    position: absolute; /* Changed from fixed to absolute */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    background-color: var(--table-header-bg);
+    border-top: 1px solid var(--table-border-color);
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    z-index: 5; /* Ensure footer is below cat */
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .timetable-controls {
+        flex-direction: column; /* Stack controls vertically */
+        align-items: stretch; /* Make controls full width */
+    }
+
+    select {
+        width: 100%; /* Make selects full width */
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .table .countdown {
+        min-width: 120px;
+    }
+
+    .cat { /* Slightly smaller cat on smaller screens */
+        width: 25px;
+        height: 20px;
+    }
+    .cat::before, .cat::after { /* Adjust ears */
+         border-left-width: 4px;
+         border-right-width: 4px;
+         border-bottom-width: 6px;
+         top: -5px;
+    }
+     .cat::after { /* Adjust tail */
+        width: 4px;
+        height: 12px;
+        top: 4px;
+        left: -4px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 1rem;
+        padding-bottom: 5rem; /* Adjust padding for smaller footer/cat */
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .table .countdown {
+        min-width: 100px;
+    }
+
+    .btn-success {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+        padding: 0.75rem 0;
+    }
+
+    .cat-animation-container {
+        bottom: 3.5rem; /* Adjust position above smaller footer */
+        height: 30px;
+    }
+     .cat { /* Even smaller cat */
+        width: 20px;
+        height: 16px;
+    }
+    .cat::before, .cat::after { /* Adjust ears */
+         border-left-width: 3px;
+         border-right-width: 3px;
+         border-bottom-width: 5px;
+         top: -4px;
+    }
+     .cat::after { /* Adjust tail */
+        width: 3px;
+        height: 10px;
+        top: 3px;
+        left: -3px;
+    }
 }

@@ -415,10 +415,11 @@ function countdown(cdate, dest) {
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+        // Add/remove class instead of setting style directly
         if (days < 5) {
-            dest.style.color = "red";
+            dest.classList.add("expiring-soon");
         } else {
-            dest.style.color = "black";
+            dest.classList.remove("expiring-soon");
         }
 
         dest.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
