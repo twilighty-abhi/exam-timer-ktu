@@ -24,7 +24,7 @@ body {
     position: relative; /* Needed for absolute positioning of cat container */
     min-height: 100vh; /* Ensure body takes full height */
     box-sizing: border-box;
-    padding-bottom: 10rem; /* Increased padding for footer + cat */
+    padding-bottom: 12rem; /* Increased padding for footer + cat */
 }
 
 .container {
@@ -179,7 +179,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem; /* Adjust spacing between buttons */
+    gap: 2rem; /* Adjust spacing between buttons */
 }
 
 /* --- Running Cat GIF --- */
@@ -195,7 +195,7 @@ select {
     /* Optional: Add a subtle shadow */
     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
     /* Ensure bottom edge aligns roughly with footer top */
-    bottom: 4rem; /* Fallback/initial rough position */
+    bottom: 5rem; /* Fallback/initial rough position */
 }
 /* --- End Running Cat GIF --- */
 
