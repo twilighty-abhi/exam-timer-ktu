@@ -24,6 +24,7 @@ body {
     position: relative; /* Needed for absolute positioning of cat container */
     min-height: 100vh; /* Ensure body takes full height */
     box-sizing: border-box;
+    padding-bottom: 10rem; /* Increased padding for footer + cat */
 }
 
 .container {
@@ -129,14 +130,35 @@ select {
 .btn-success {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+    color: #fff; /* Ensure text is always white */
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: 500;
     border-radius: var(--border-radius);
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    text-decoration: none; /* Remove hyperlink styling */
+    display: inline-block; /* Treat as block for consistent sizing */
 }
 
 .btn-success:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+/* Add specific style for the info button */
+.btn-info {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff; /* Ensure text is always white */
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    text-decoration: none; /* Remove hyperlink styling */
+    display: inline-block; /* Treat as block for consistent sizing */
+}
+
+.btn-info:hover {
     background-color: #0056b3;
     border-color: #0056b3;
 }
@@ -151,6 +173,13 @@ select {
     height: auto;
     max-height: 200px; /* Limit meme height */
     object-fit: contain;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Adjust spacing between buttons */
 }
 
 /* --- Running Cat GIF --- */
@@ -172,7 +201,7 @@ select {
 
 
 footer {
-    position: absolute; /* Changed from fixed to absolute */
+    position: fixed; /* Changed from fixed to absolute */
     bottom: 0;
     left: 0;
     width: 100%;
